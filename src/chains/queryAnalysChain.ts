@@ -31,22 +31,23 @@ Rules:
 - Description should explain why if query is irrelevant
 - If productName consists of 2 or more words, put a + sign between them instead of a space
 -You should not use ‘.’ or ‘,’ to define the price range, you should use 1000-2000.
+-if the product name contains a brand, take brand+productname
 
 Example inputs and expected outputs:
 
-Example input: "200 TL altında bir ayakkabı arıyorum"
+Example input: "200 TL altında bir nike ayakkabı arıyorum"
 Example output: {{
     "category": "economic",
-    "productName": "ayakkabı",
+    "productName": "nike+ayakkabı",
     "price": "0-200",
     "currency": "TRY",
     "description":"null"
 }}
 
-Example input: "en çok satan telefonlar hangileri"
+Example input: "en çok satan apple telefon kılıfları hangileri"
 Example output: {{
     "category": "favorite",
-    "productName": "telefon",
+    "productName": "apple+telefon+kılıfı",
     "price": null,
     "currency": null,
     "description":"null"
@@ -55,6 +56,15 @@ Example input: "Mavi renkli bir kase satın almak istiyorum"
 Example output: {{
     "category": "favorite",
     "productName": "mavi+kase",
+    "price": null,
+    "currency": null,
+    "description":"null"
+}}
+
+Example input: "en yüksek puanlı telefonlar"
+Example output: {{
+    "category": "score",
+    "productName": "telefon",
     "price": null,
     "currency": null,
     "description":"null"

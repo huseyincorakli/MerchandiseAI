@@ -40,7 +40,7 @@ async function scrapePage(
     console.log(`Loading page ${pageNumber}:`, url);
 
     try {
-        await page.goto(url, { waitUntil: 'networkidle0' });
+        await page.goto(url, { waitUntil: 'networkidle2' });
 
         const products = await page.evaluate(() => {
             return Array.from(document.querySelectorAll('.p-card-wrppr')).map((card) => {

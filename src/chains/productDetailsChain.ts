@@ -12,21 +12,21 @@ Product Details: {productDetails}
 
 Please analyze the following aspects in detail:
 
-1. Product Features and Quality
+1. Product Features and Quality 
 - Technical specifications and material quality
 - Dimensions and usage area
 - Product durability
 
-2. Price Assessment
+2. Price Assessment 
 - Price-performance analysis
 - Market comparison
 
-3. User Reviews Summary
+3. User Reviews Summary 
 - Most common positive feedback
 - Reported issues or shortcomings
 - Overall user satisfaction
 
-4. Suitability for User Needs
+4. Suitability for User Needs 
 - How well it matches the user's requirements
 - Potential limitations or missing features
 - Alternative suggestions
