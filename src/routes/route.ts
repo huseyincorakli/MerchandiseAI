@@ -28,6 +28,8 @@ router.get('/product-recommendation', async (req: Request, res: Response) => {
 
 
 router.get('/analys-product', async (req: Request, res: Response) => {
+    console.log("info analiz",req.query);
+    
     let url = req.query.q as string;
     let userQuery = req.query.uq as string;
     if (!url || !userQuery) {

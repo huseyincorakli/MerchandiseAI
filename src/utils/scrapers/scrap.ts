@@ -1,7 +1,4 @@
-import express, { Request, Response } from 'express';
 import puppeteer, { Browser } from 'puppeteer';
-
-const router = express.Router();
 
 type SortOption = 'SCORE' | 'MOST_RECENT' | 'PRICE_BY_ASC' | 'PRICE_BY_DESC' | 'MOST_FAVOURITE' | 'MOST_RATED';
 
@@ -33,14 +30,14 @@ async function scrapePage(
 ) {
     const page = await browser.newPage();
     console.log('Chrome path:', await browser.browserContexts());
-    await page.setDefaultNavigationTimeout(30000);
+    await page.setDefaultNavigationTimeout(60000);
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
 
     const url = buildUrl(productName, pageNumber, sortType, priceRange);
     console.log(`Loading page ${pageNumber}:`, url);
 
     try {
-        await page.goto(url, { waitUntil: 'networkidle2' });
+        await page.goto(url, { waitUntil: 'load' });
 
         const products = await page.evaluate(() => {
             return Array.from(document.querySelectorAll('.p-card-wrppr')).map((card) => {
@@ -112,39 +109,6 @@ export async function scrap(productName: string, pageNumber: number = 1, sortTyp
     }
 }
 
-const isValidSortType = (sort?: string): sort is SortOption => {
-    const validSortTypes = ['SCORE', 'MOST_RECENT', 'PRICE_BY_ASC', 'PRICE_BY_DESC', 'MOST_FAVOURITE', 'MOST_RATED'];
-    return sort ? validSortTypes.includes(sort) : false;
-};
 
-router.get('/test-scraping', async (req: Request, res: Response) => {
-    try {
-        const searchQuery = req.query.q?.toString() as string;
-        if (!searchQuery) {
-             res.status(400).json({ success: false, response: 'The query parameter "q" is required' });
-        }
 
-        const pageNumber = parseInt(req.query.page?.toString() || '1');
-        const sortType = req.query.sort?.toString();
 
-        if (sortType && !isValidSortType(sortType)) {
-             res.status(400).json({
-                success: false,
-                response: 'Invalid sort type. Valid values are: SCORE, MOST_RECENT, PRICE_BY_ASC, PRICE_BY_DESC, MOST_FAVOURITE, MOST_RATED',
-            });
-        }
-
-        const priceRange = req.query.prc?.toString();
-        const results = await scrap(searchQuery, pageNumber, sortType as SortOption, priceRange);
-
-        res.status(200).json({ success: true, ...results });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: 'Error during data scraping',
-            details: error instanceof Error ? error.message : 'Unknown error',
-        });
-    }
-});
-
-export default router;

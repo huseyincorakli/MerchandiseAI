@@ -37,7 +37,7 @@ Example inputs and expected outputs:
 
 Example input: "200 TL altında bir nike ayakkabı arıyorum"
 Example output: {{
-    "category": "economic",
+    "category": "favorite",
     "productName": "nike+ayakkabı",
     "price": "0-200",
     "currency": "TRY",
