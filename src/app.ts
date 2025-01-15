@@ -8,8 +8,8 @@ const PORT = ENV.PORT || 3000;
 
 
 const corsOptions = {
-  origin: '*', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  origin: 'https://merchandiseai.huscor.tech', 
+  methods: ['GET'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, 
   preflightContinue: false,
