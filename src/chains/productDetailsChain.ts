@@ -40,7 +40,7 @@ Keep the analysis as short as possible while covering all the necessary aspects.
 `);
 
 const llm = new ChatTogetherAI({
-    model: LLMModelHelper.getModelString(LLMModel.LLAMA_70B_FREE),
+    model: LLMModelHelper.getModelString(LLMModel.LLAMA_70B),
     temperature: 0,
     maxTokens: 550,
 

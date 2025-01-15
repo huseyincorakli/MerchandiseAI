@@ -13,7 +13,7 @@ const CombinedSchema = z.object({
 });
 
 const llm = new ChatTogetherAI({
-    model: LLMModelHelper.getModelString(LLMModel.LLAMA_70B_FREE),
+    model: LLMModelHelper.getModelString(LLMModel.LLAMA_8B),
     temperature: 0,
     maxTokens: 1500,
     togetherAIApiKey:process.env.TOGETHER_AI_API_KEY as string
